@@ -4,11 +4,23 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script defer src="index.js" type="module"></script>
-    <link rel="stylesheet" href="style.scss">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="canvas__wrapper">
-        <canvas class="canvas" id="canvas"></canvas>
-    </div>
+<header class="header">
+    <nav class="user-menu">
+        <a href="#" class="user-menu__avatar-link">
+            <img class="user-menu__avatar" src="./guest.jpg" alt="guest">
+        </a>
+    </nav>
+</header>
+
+<main class="main">
+    <form name="formUploadAvatar">
+        <input type="file" class="input input--file" accept="image/jpeg, image/jpg, image/png" id="inputUploadAvatar">
+    </form>
+    <div class="canvas__wrapper"></div>
+</main>
+
 </body>
 </html>

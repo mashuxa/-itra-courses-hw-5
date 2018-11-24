@@ -15,21 +15,21 @@ body {
 
 .user-menu {
   margin-left: auto;
-  &__avatar {
-    width: auto;
-    height: 100%;
-  }
-  &__avatar-link {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    object-fit: cover;
-    object-position: center;
-    width: 100px;
-    height: 100px;
-    overflow: hidden;
-    border-radius: 50%;
-  }
+}
+.user-menu__avatar {
+  width: auto;
+  height: 100%;
+}
+.user-menu__avatar-link {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  object-fit: cover;
+  object-position: center;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .input {
@@ -40,11 +40,10 @@ body {
 .canvas {
   width: 100%;
   height: auto;
-
-  &__wrapper {
-    position: relative;
-    width: 50%;
-  }
+}
+.canvas__wrapper {
+  position: relative;
+  width: 50%;
 }
 
 .borders {
@@ -56,3 +55,5 @@ body {
   height: 100px;
   border: 2px dotted black;
 }
+
+/*# sourceMappingURL=style.css.map */
