@@ -4,7 +4,10 @@ html {
 }
 
 body {
+  min-height: 100%;
   margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -40,20 +43,39 @@ body {
 .canvas {
   width: 100%;
   height: auto;
-}
-.canvas__wrapper {
-  position: relative;
-  width: 50%;
+  border: 1px dotted gray;
 }
 
-.borders {
+.btns-wrapper {
+  display: flex;
+  padding: 20px 0;
+}
+
+.btn {
+  cursor: pointer;
+  margin: 10px;
+  padding: 0 20px;
+  background-color: green;
+  outline: none;
+  border: none;
+}
+.btn--disabled {
+  cursor: auto;
+  background-color: gray;
+}
+
+.frame {
   position: absolute;
-  left: calc(50% - 50px);
-  top: calc(50% - 50px);
   border-radius: 50%;
-  width: 100px;
-  height: 100px;
   border: 2px dotted black;
+  cursor: move;
+}
+
+.main {
+  width: 50%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /*# sourceMappingURL=style.css.map */

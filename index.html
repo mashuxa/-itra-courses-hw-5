@@ -16,10 +16,11 @@
 </header>
 
 <main class="main">
-    <form name="formUploadAvatar">
+    <form name="formUploadAvatar" class="btns-wrapper">
         <input type="file" class="input input--file" accept="image/jpeg, image/jpg, image/png" id="inputUploadAvatar">
+        <button class="btn btn--disabled" type="button" id="btnApply">Apply</button>
     </form>
-    <div class="canvas__wrapper"></div>
+    <canvas class="canvas" id="canvas"></canvas>
 </main>
 
 </body>

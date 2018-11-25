@@ -2,10 +2,28 @@ import Cropper from "./Cropper.js";
 
 (function () {
   let inputFile = document.forms.formUploadAvatar.inputUploadAvatar;
-  let wrapper = document.querySelector('.canvas__wrapper');
+  let canvas = document.getElementById('canvas');
+
   inputFile.addEventListener('change', (e) => {
-    let cropper = new Cropper(e.target.files[0], wrapper);
-    console.log(cropper);
+    let blob = e.target.files[0];
+    let cropper = blob ? new Cropper(blob, canvas) : false;
+    if (cropper) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
   });
 
 })();
