@@ -12,8 +12,6 @@ export default class Cropper {
     this.btnApply = btnApply;
     this.avatar = avatar;
 
-
-
     let cropper = this;
     function handler(e) {
       let x = e.movementX;
@@ -62,6 +60,7 @@ export default class Cropper {
   }
 
   blobToImg(blob) {
+    document.getElementById('preloader').style.display = 'block';
     let img = new Image();
     img.src = URL.createObjectURL(blob);
     img.onload = () => {
@@ -69,6 +68,7 @@ export default class Cropper {
       this.imgWidth = this.img.width;
       this.imgHeight = this.img.height;
       this.initCropper();
+      document.getElementById('preloader').style.display = 'none';
     };
   }
 
@@ -101,7 +101,6 @@ export default class Cropper {
   }
 
   applyImg(){
-    console.log(this.circleFrame);
     this.drawImage();
     this.canvas.width = this.circleFrame.radius * 2;
     this.canvas.height = this.circleFrame.radius * 2;

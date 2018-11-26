@@ -1,55 +1,51 @@
+@keyframes rotate {
+  from {
+    transform: rotate(0); }
+  to {
+    transform: rotate(360deg); } }
 html {
   height: 100%;
-  font: 15px sans-serif;
-}
+  font: 15px sans-serif; }
 
 body {
   min-height: 100%;
   margin: 0;
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
 
 .header {
   display: flex;
   background-color: #333;
-  padding: 10px;
-}
+  padding: 10px; }
 
 .user-menu {
-  margin-left: auto;
-}
-.user-menu__avatar {
-  width: auto;
-  height: 100%;
-}
-.user-menu__avatar-link {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  object-fit: cover;
-  object-position: center;
-  width: 100px;
-  height: 100px;
-  overflow: hidden;
-  border-radius: 50%;
-}
+  margin-left: auto; }
+  .user-menu__avatar {
+    width: auto;
+    height: 100%; }
+  .user-menu__avatar-link {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    object-fit: cover;
+    object-position: center;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%; }
 
 .input {
   display: block;
-  margin: 10px;
-}
+  margin: 10px; }
 
 .canvas {
   width: 100%;
   height: auto;
-  border: 1px dotted gray;
-}
+  border: 1px dotted gray; }
 
 .btns-wrapper {
   display: flex;
-  padding: 20px 0;
-}
+  padding: 20px 0; }
 
 .btn {
   cursor: pointer;
@@ -57,25 +53,31 @@ body {
   padding: 0 20px;
   background-color: green;
   outline: none;
-  border: none;
-}
-.btn--disabled {
-  cursor: auto;
-  background-color: gray;
-}
+  border: none; }
+  .btn--disabled {
+    cursor: auto;
+    background-color: gray; }
 
 .frame {
   position: absolute;
   border-radius: 50%;
   border: 2px dotted black;
-  cursor: move;
-}
+  cursor: move; }
 
 .main {
   width: 50%;
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
-}
+  flex-direction: column; }
+
+.preloader {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  position: absolute;
+  top: calc(50% - 18px);
+  left: calc(50% - 18px);
+  animation: 1s rotate infinite;
+  z-index: 1000; }
 
 /*# sourceMappingURL=style.css.map */
