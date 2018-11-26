@@ -107,10 +107,14 @@ export default class Cropper {
     this.canvas.height = this.circleFrame.radius * 2;
     this.ctx.drawImage(this.img, this.circleFrame.x0 - this.circleFrame.radius, this.circleFrame.y0 - this.circleFrame.radius, this.circleFrame.radius * 2, this.circleFrame.radius*2, 0, 0, this.circleFrame.radius*2, this.circleFrame.radius*2);
 
-    let newImg = new Image(100, 100);
+    // let newImg = new Image(100, 100);
+    let newImg = new Image();
     newImg.src = this.canvas.toDataURL();
     newImg.onload = ()=>{
       this.img = newImg;
+      this.imgWidth = newImg.width;
+      this.imgHeight = newImg.height;
+
       this.avatar.src = newImg.src;
       this.initCropper();
     };
