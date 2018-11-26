@@ -2,42 +2,38 @@ import CircleFrame from "./CircleFrame.js";
 import EventCoordinates from "./EventCoordinates.js";
 
 
-//!!!!!!!!!!!cropper.eventCoordinates
+
 export default class Cropper {
-  constructor(blob, canvas) {
+  constructor(blob, canvas, btnApply, avatar) {
     this.indent = 20; //px
     this.canvas = canvas;
     this.ctx = this.canvas.getContext('2d');
     this.blobToImg(blob);
+    this.btnApply = btnApply;
+    this.avatar = avatar;
 
-    window.addEventListener('resize', () => {
-      this.setCoefficient();
-      this.circleFrame.k = this.k;
-    });
+
 
     let cropper = this;
-
-
     function handler(e) {
       let x = e.movementX;
       let y = e.movementY;
-      console.log(cropper.eventCoordinates);
       if (cropper.eventCoordinates.isCenter) {
-        cropper.circleFrame.x0 = cropper.circleFrame.x0 + x*cropper.k;
-        cropper.circleFrame.y0 = cropper.circleFrame.y0 + y*cropper.k;
-      } else if (this.eventCoordinates.isLeft) {
-
-      } else if (this.eventCoordinates.isRight) {
-
-      } else if (this.eventCoordinates.isTop) {
-
-      } else if (this.eventCoordinates.isBottom) {
-
+        cropper.circleFrame = new CircleFrame(cropper.circleFrame.x0 + x*cropper.k,cropper.circleFrame.y0 + y*cropper.k, cropper.circleFrame.radius ,cropper.k);
+      } else if (cropper.eventCoordinates.isLeft) {
+        cropper.circleFrame = new CircleFrame(cropper.circleFrame.x0, cropper.circleFrame.y0, cropper.circleFrame.radius - x * cropper.k, cropper.k);
+      } else if (cropper.eventCoordinates.isRight) {
+        cropper.circleFrame = new CircleFrame(cropper.circleFrame.x0, cropper.circleFrame.y0, cropper.circleFrame.radius + x * cropper.k, cropper.k);
+      } else if (cropper.eventCoordinates.isTop) {
+        cropper.circleFrame = new CircleFrame(cropper.circleFrame.x0, cropper.circleFrame.y0, cropper.circleFrame.radius - y * cropper.k, cropper.k);
+      } else if (cropper.eventCoordinates.isBottom) {
+        cropper.circleFrame = new CircleFrame(cropper.circleFrame.x0, cropper.circleFrame.y0, cropper.circleFrame.radius + y * cropper.k, cropper.k);
       }
       cropper.drawImage();
       cropper.drawCircleFrame();
 
     }
+
 
     this.canvas.addEventListener('mousemove', (e) => {
       let eventCoordinates = new EventCoordinates(e, cropper);
@@ -49,16 +45,20 @@ export default class Cropper {
         this.canvas.style.cursor = 'auto';
       }
     });
-
     this.canvas.addEventListener('mousedown', (e) => {
       this.eventCoordinates = new EventCoordinates(e, cropper);
       document.addEventListener('mousemove', handler);
     });
-
     document.addEventListener('mouseup', () => {
       document.removeEventListener('mousemove', handler);
     });
-
+    window.addEventListener('resize', () => {
+      this.setCoefficient();
+      this.circleFrame.k = this.k;
+    });
+    this.btnApply.addEventListener('click', (e)=>{
+      this.applyImg();
+    });
   }
 
   blobToImg(blob) {
@@ -77,7 +77,6 @@ export default class Cropper {
     this.setCoefficient();
     this.circleFrame = new CircleFrame(this.imgWidth / 2, this.imgHeight / 2, Math.min(this.imgWidth, this.imgHeight) / 4, this.k);
     this.drawCircleFrame();
-    console.log(this.circleFrame);
   }
 
   setCoefficient() {
@@ -101,5 +100,21 @@ export default class Cropper {
     this.ctx.stroke();
   }
 
+  applyImg(){
+    console.log(this.circleFrame);
+    this.drawImage();
+    this.canvas.width = this.circleFrame.radius * 2;
+    this.canvas.height = this.circleFrame.radius * 2;
+    this.ctx.drawImage(this.img, this.circleFrame.x0 - this.circleFrame.radius, this.circleFrame.y0 - this.circleFrame.radius, this.circleFrame.radius * 2, this.circleFrame.radius*2, 0, 0, this.circleFrame.radius*2, this.circleFrame.radius*2);
+
+    let newImg = new Image(100, 100);
+    newImg.src = this.canvas.toDataURL();
+    newImg.onload = ()=>{
+      this.img = newImg;
+      this.avatar.src = newImg.src;
+      this.initCropper();
+    };
+
+  }
 
 }
