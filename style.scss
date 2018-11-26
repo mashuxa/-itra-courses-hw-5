@@ -17,6 +17,8 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 500px;
 }
 
 .header {
@@ -84,7 +86,7 @@ body {
 }
 
 .main {
-  width: 50%;
+  width: 100%;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
